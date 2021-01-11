@@ -1,0 +1,9 @@
+---
+- name: "Set protocols"
+  lineinfile:
+    path: /etc/dovecot/dovecot.conf
+    create: true
+    regexp: "protocols = "
+    line: "protocols = {{ dovecot_protocols }}"
+  when: dovecot_protocols|length >0
+  notify: Restart dovecot service

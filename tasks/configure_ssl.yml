@@ -1,0 +1,16 @@
+---
+- name: "SSL: Set cert"
+  lineinfile:
+    path: /etc/dovecot/conf.d/10-ssl.conf
+    create: true
+    regexp: "ssl_cert ="
+    line: "ssl_cert = <{{ dovecot_ssl_cert_path }}"
+  notify: Restart dovecot service
+
+- name: "SSL: Set key"
+  lineinfile:
+    path: /etc/dovecot/conf.d/10-ssl.conf
+    create: true
+    regexp: "ssl_key ="
+    line: "ssl_key = <{{ dovecot_ssl_key_path }}"
+  notify: Restart dovecot service

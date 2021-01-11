@@ -4,3 +4,9 @@
 
 - name: Inlcude tasks to configure dovecot
   include_tasks: configure.yml
+
+- name: Enable and start dovecot service
+  service:
+    name: dovecot
+    state: started
+    enabled: true
