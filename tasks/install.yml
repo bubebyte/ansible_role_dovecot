@@ -1,0 +1,30 @@
+---
+- name: Install dovecot
+  ansible.builtin.package:
+    name: "dovecot"
+    state: present
+
+- name: Add MySQL backend package to extra packages
+  set_fact:
+    dovecot_extra_packages: "{{ dovecot_extra_packages + ['dovecot-mysql'] }}"
+  when:
+    - dovecot_auth_method == "sql"
+    - dovecot_sql_backend|lower == "mysql"
+
+- name: Add PostgreSQL backend package to extra packages
+  set_fact:
+    dovecot_extra_packages: "{{ dovecot_extra_packages + ['dovecot-pgsql'] }}"
+  when:
+    - dovecot_auth_method == "sql"
+    - dovecot_sql_backend|lower == "postgresql"
+
+- name: Add pigeonhole package to extra packages
+  set_fact:
+    dovecot_extra_packages: "{{ dovecot_extra_packages + ['dovecot-pigeonhole'] }}"
+  when:
+    - dovecot_managesieve|bool
+
+- name: Install extra packages
+  ansible.builtin.package:
+    name: "{{ dovecot_extra_packages }}"
+    state: present

@@ -1,0 +1,6 @@
+---
+- name: Inlcude tasks to install dovecot
+  include_tasks: install.yml
+
+- name: Inlcude tasks to configure dovecot
+  include_tasks: configure.yml

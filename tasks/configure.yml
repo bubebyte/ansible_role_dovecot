@@ -1,0 +1,43 @@
+---
+- name: Remove unused authetication methods from auth config
+  lineinfile:
+    path: /etc/dovecot/conf.d/10-auth.conf
+    create: true
+    regexp: "^(|#)!include auth-.*(?<!{{ dovecot_auth_method }}).conf.ext"
+    state: absent
+
+- name: Set authetication method
+  lineinfile:
+    path: /etc/dovecot/conf.d/10-auth.conf
+    create: true
+    regexp: "(|#)!include auth-{{ dovecot_auth_method }}.conf.ext"
+    line: "!include auth-{{ dovecot_auth_method }}.conf.ext"
+
+# SQL
+- name: "AUTH: SQL - Set driver"
+  lineinfile:
+    path: /etc/dovecot/dovecot-sql.conf.ext
+    create: true
+    regexp: "driver ="
+    line: "driver = {{ dovecot_sql_backend }}"
+
+- name: "AUTH: SQL - Set connect"
+  lineinfile:
+    path: /etc/dovecot/dovecot-sql.conf.ext
+    create: true
+    regexp: "connect ="
+    line: "connect = host={{ dovecot_sql_backend_hostname }} dbname={{ dovecot_sql_backend_databasename }} user={{ dovecot_sql_backend_user }} password={{ dovecot_sql_backend_password }}"
+
+- name: "AUTH: SQL - Set password_query"
+  lineinfile:
+    path: /etc/dovecot/dovecot-sql.conf.ext
+    create: true
+    regexp: "password_query ="
+    line: "password_query = {{ dovecot_sql_password_query }}"
+
+- name: "AUTH: SQL - Set user_query"
+  lineinfile:
+    path: /etc/dovecot/dovecot-sql.conf.ext
+    create: true
+    regexp: "user_query ="
+    line: "user_query = {{ dovecot_sql_user_query }}"
