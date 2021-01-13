@@ -8,3 +8,10 @@
 - name: Inlcude tasks to configure ssl
   include_tasks: configure_ssl.yml
 
+- name: Configure mailbox locations and namespaces
+  ansible.builtin.template:
+    src: 10-mail.conf.j2
+    dest: /etc/dovecot/conf.d/10-mail.conf
+    owner: root
+    group: root
+    mode: '0644'

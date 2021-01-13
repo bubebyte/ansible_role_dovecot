@@ -14,3 +14,8 @@ dovecot_sql_user_query: "SELECT home, uid, gid FROM users WHERE username = '%Ln'
 
 dovecot_ssl_cert_path: /etc/pki/dovecot/certs/dovecot.pem
 dovecot_ssl_key_path: /etc/pki/dovecot/private/dovecot.pem
+
+dovecot_mail_location: "maildir:~/Maildir"
+dovecot_mail_namespace:
+  inbox:
+    inbox: "yes"
