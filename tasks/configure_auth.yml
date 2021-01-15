@@ -15,35 +15,37 @@
     line: "!include auth-{{ dovecot_auth_method }}.conf.ext"
   notify: Restart dovecot service
 
-# SQL
-- name: "AUTH: SQL - Set driver"
-  lineinfile:
-    path: /etc/dovecot/dovecot-sql.conf.ext
-    create: true
-    regexp: "driver ="
-    line: "driver = {{ dovecot_sql_backend }}"
-  notify: Restart dovecot service
-
-- name: "AUTH: SQL - Set connect"
-  lineinfile:
-    path: /etc/dovecot/dovecot-sql.conf.ext
-    create: true
-    regexp: "connect ="
-    line: "connect = host={{ dovecot_sql_backend_hostname }} dbname={{ dovecot_sql_backend_databasename }} user={{ dovecot_sql_backend_user }} password={{ dovecot_sql_backend_password }}"
-  notify: Restart dovecot service
-
-- name: "AUTH: SQL - Set password_query"
-  lineinfile:
-    path: /etc/dovecot/dovecot-sql.conf.ext
-    create: true
-    regexp: "password_query ="
-    line: "password_query = {{ dovecot_sql_password_query }}"
-  notify: Restart dovecot service
-
-- name: "AUTH: SQL - Set user_query"
-  lineinfile:
-    path: /etc/dovecot/dovecot-sql.conf.ext
-    create: true
-    regexp: "user_query ="
-    line: "user_query = {{ dovecot_sql_user_query }}"
-  notify: Restart dovecot service
+- name: "AUTH: SQL"
+  block:
+    - name: "AUTH: SQL - Set driver"
+      lineinfile:
+        path: /etc/dovecot/dovecot-sql.conf.ext
+        create: true
+        regexp: "driver ="
+        line: "driver = {{ dovecot_sql_backend }}"
+      notify: Restart dovecot service
+    
+    - name: "AUTH: SQL - Set connect"
+      lineinfile:
+        path: /etc/dovecot/dovecot-sql.conf.ext
+        create: true
+        regexp: "connect ="
+        line: "connect = host={{ dovecot_sql_backend_hostname }} dbname={{ dovecot_sql_backend_databasename }} user={{ dovecot_sql_backend_user }} password={{ dovecot_sql_backend_password }}"
+      notify: Restart dovecot service
+    
+    - name: "AUTH: SQL - Set password_query"
+      lineinfile:
+        path: /etc/dovecot/dovecot-sql.conf.ext
+        create: true
+        regexp: "password_query ="
+        line: "password_query = {{ dovecot_sql_password_query }}"
+      notify: Restart dovecot service
+    
+    - name: "AUTH: SQL - Set user_query"
+      lineinfile:
+        path: /etc/dovecot/dovecot-sql.conf.ext
+        create: true
+        regexp: "user_query ="
+        line: "user_query = {{ dovecot_sql_user_query }}"
+      notify: Restart dovecot service
+  when: dovecot_auth_method == "sql"
