@@ -1,0 +1,17 @@
+---
+- name: Configure managesieve
+  ansible.builtin.template:
+    src: 20-managesieve.conf.j2
+    dest: /etc/dovecot/conf.d/20-managesieve.conf
+    owner: root
+    group: root
+    mode: '0644'
+  when: dovecot_managesieve|bool
+  notify: Restart dovecot service
+
+- name: Remove managesieve configuration
+  ansible.builtin.file:
+    path: /etc/dovecot/conf.d/20-managesieve.conf
+    state: absent
+  when: not dovecot_managesieve|bool
+  notify: Restart dovecot service
