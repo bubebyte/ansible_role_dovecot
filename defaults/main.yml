@@ -2,7 +2,6 @@
 dovecot_extra_packages: []
 dovecot_auth_method: system
 dovecot_sql_backend: mysql  # relevant only if dovecot_auth_method is set to sql
-dovecot_managesieve: true
 dovecot_protocols: ""  # if left blank, the systrem default will be used
 
 dovecot_sql_backend_hostname: localhost
@@ -19,3 +18,6 @@ dovecot_mail_location: "maildir:~/Maildir"
 dovecot_mail_namespace:
   inbox:
     inbox: "yes"
+
+dovecot_managesieve: false
+dovecot_managesieve_port: 4190

@@ -1,0 +1,10 @@
+---
+- name: "LDA: Set plugins"
+  lineinfile:
+    path: /etc/dovecot/conf.d/15-lda.conf
+    create: false
+    regexp: "mail_plugins = "
+    line: "  mail_plugins = $mail_plugins sieve"
+    insertafter: "^protocol lda {"
+  when: dovecot_managesieve|bool
+  notify: Restart dovecot service
