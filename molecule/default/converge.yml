@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  gather_facts: true
+
+  vars:
+    dovecot_managesieve: true
+
+  roles:
+    - role: ansible_role_dovecot
