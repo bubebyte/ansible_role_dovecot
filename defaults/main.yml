@@ -8,7 +8,7 @@ dovecot_sql_backend_hostname: localhost
 dovecot_sql_backend_databasename: maildb
 dovecot_sql_backend_user: maildbusr
 dovecot_sql_backend_password: "ChangeMePLZ!"
-dovecot_sql_password_query: "SELECT username, domain, password FROM users WHERE username = '%Ln' AND domain = '%Ld' AND active = 'Y'"
+dovecot_sql_password_query: "SELECT username, domain, password FROM users WHERE username = '%Ln' AND domain = '%Ld' AND active = 'Y'"  # noqa 204
 dovecot_sql_user_query: "SELECT home, uid, gid FROM users WHERE username = '%Ln' AND domain = '%Ld' AND active = 'Y'"
 
 dovecot_ssl_cert_path: /etc/pki/dovecot/certs/dovecot.pem
