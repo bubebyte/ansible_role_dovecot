@@ -5,6 +5,9 @@
     create: true
     regexp: "ssl_cert ="
     line: "ssl_cert = <{{ dovecot_ssl_cert_path }}"
+    owner: root
+    group: root
+    mode: '0644'
   notify: Restart dovecot service
 
 - name: "SSL: Set key"
@@ -13,4 +16,7 @@
     create: true
     regexp: "ssl_key ="
     line: "ssl_key = <{{ dovecot_ssl_key_path }}"
+    owner: root
+    group: root
+    mode: '0644'
   notify: Restart dovecot service

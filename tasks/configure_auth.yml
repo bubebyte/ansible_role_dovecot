@@ -4,6 +4,9 @@
     path: /etc/dovecot/conf.d/10-auth.conf
     create: true
     regexp: "^(|#)!include auth-.*(?<!{{ dovecot_auth_method }}).conf.ext"
+    owner: root
+    group: root
+    mode: '0644'
     state: absent
   notify: Restart dovecot service
 
@@ -13,6 +16,9 @@
     create: true
     regexp: "(|#)!include auth-{{ dovecot_auth_method }}.conf.ext"
     line: "!include auth-{{ dovecot_auth_method }}.conf.ext"
+    owner: root
+    group: root
+    mode: '0644'
   notify: Restart dovecot service
 
 - name: "AUTH: SQL"
@@ -23,6 +29,9 @@
         create: true
         regexp: "driver ="
         line: "driver = {{ dovecot_sql_backend }}"
+        owner: root
+        group: root
+        mode: '0644'
       notify: Restart dovecot service
 
     - name: "AUTH: SQL - Set connect"
@@ -31,6 +40,9 @@
         create: true
         regexp: "connect ="
         line: "connect = host={{ dovecot_sql_backend_hostname }} dbname={{ dovecot_sql_backend_databasename }} user={{ dovecot_sql_backend_user }} password={{ dovecot_sql_backend_password }}"  # noqa 204
+        owner: root
+        group: root
+        mode: '0644'
       notify: Restart dovecot service
 
     - name: "AUTH: SQL - Set password_query"
@@ -39,6 +51,9 @@
         create: true
         regexp: "password_query ="
         line: "password_query = {{ dovecot_sql_password_query }}"
+        owner: root
+        group: root
+        mode: '0644'
       notify: Restart dovecot service
 
     - name: "AUTH: SQL - Set user_query"
@@ -47,5 +62,8 @@
         create: true
         regexp: "user_query ="
         line: "user_query = {{ dovecot_sql_user_query }}"
+        owner: root
+        group: root
+        mode: '0644'
       notify: Restart dovecot service
   when: dovecot_auth_method == "sql"
