@@ -1,0 +1,27 @@
+# {{ ansible_managed }}
+
+##
+## Services
+##
+
+{% for service in dovecot_service %}
+{% if dovecot_service[service] is mapping %}
+service {{ service }} {
+{% for service_item in dovecot_service[service] %}
+{% if dovecot_service[service][service_item] is mapping %}
+  {{ service_item }} {
+{% for service_item_setting in dovecot_service[service][service_item] %}
+    {{ service_item_setting }} = {{ dovecot_service[service][service_item][service_item_setting] }}
+{% endfor %}
+  }
+{% elif dovecot_service[service][service_item] is defined %}
+  {{ service_item }} = {{ dovecot_service[service][service_item] }}
+{% endif %}
+{% endfor %}
+}
+
+{% elif dovecot_service[service] is defined %}
+{{ service }} = {{ dovecot_service[service] }}
+
+{% endif %}
+{% endfor %}

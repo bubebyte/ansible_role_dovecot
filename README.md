@@ -39,6 +39,30 @@ dovecot_mail_namespace:
   inbox:
     inbox: "yes"
 
+dovecot_service:
+  imap-login:
+    inet_listener imap:
+      port: 143
+    inet_listener imaps:
+      port: 993
+      ssl: "yes"
+    service_count: 1
+  pop3-login:
+    inet_listener pop3: {}
+    inet_listener pop3s: {}
+  submission-login:
+    inet_listener submission: {}
+  lmtp:
+    unix_listener lmtp: {}
+  imap: {}
+  pop3: {}
+  submission: {}
+  auth:
+    unix_listener auth-userdb: {}
+  auth-worker: {}
+  dict:
+    unix_listener dict: {}
+
 dovecot_managesieve: false
 dovecot_managesieve_port: 4190
 ```
