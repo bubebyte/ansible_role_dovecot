@@ -27,20 +27,20 @@ dovecot_service:
       port: 993
       ssl: "yes"
     service_count: 1
-  pop3-login: 
+  pop3-login:
     inet_listener pop3: {}
     inet_listener pop3s: {}
-  submission-login: 
+  submission-login:
     inet_listener submission: {}
-  lmtp: 
+  lmtp:
     unix_listener lmtp: {}
   imap: {}
   pop3: {}
   submission: {}
-  auth: 
+  auth:
     unix_listener auth-userdb: {}
   auth-worker: {}
-  dict: 
+  dict:
     unix_listener dict: {}
 
 dovecot_managesieve: false
