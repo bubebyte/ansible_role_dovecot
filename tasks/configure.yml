@@ -17,6 +17,15 @@
     mode: '0644'
   notify: Restart dovecot service
 
+- name: Configure mailboxes
+  ansible.builtin.template:
+    src: 15-mailboxes.conf.j2
+    dest: /etc/dovecot/conf.d/15-mailboxes.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart dovecot service
+
 - name: Configure services
   ansible.builtin.template:
     src: 10-master.conf.j2
