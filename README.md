@@ -39,6 +39,19 @@ dovecot_mail_namespace:
   inbox:
     inbox: "yes"
 
+dovecot_mailboxes_namespace:
+  inbox:
+    Drafts:
+      special_use: \Drafts
+    Junk:
+      special_use: \Junk
+    Trash:
+      special_use: \Trash
+    Sent:
+      special_use: \Sent
+    "Sent Messages":
+      special_use: \Sent
+
 dovecot_service:
   imap-login:
     inet_listener imap:
