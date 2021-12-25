@@ -76,8 +76,11 @@ dovecot_service:
   dict:
     unix_listener dict: {}
 
+dovecot_imap_mail_plugins: []
+
 dovecot_managesieve: false
 dovecot_managesieve_port: 4190
+dovecot_sieve_plugins: ""
 ```
 
 ## Requirements

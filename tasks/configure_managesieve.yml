@@ -15,3 +15,13 @@
     state: absent
   when: not dovecot_managesieve|bool
   notify: Restart dovecot service
+
+- name: Configure sieve
+  ansible.builtin.template:
+    src: 90-sieve.conf.j2
+    dest: /etc/dovecot/conf.d/90-sieve.conf
+    owner: root
+    group: root
+    mode: '0644'
+  when: dovecot_managesieve|bool
+  notify: Restart dovecot service

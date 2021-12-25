@@ -1,0 +1,28 @@
+##
+## Settings for the Sieve interpreter
+##
+
+# Do not forget to enable the Sieve plugin in 15-lda.conf and 20-lmtp.conf
+# by adding it to the respective mail_plugins= settings.
+
+# The Sieve interpreter can retrieve Sieve scripts from several types of
+# locations. The default `file' location type is a local filesystem path
+# pointing to a Sieve script file or a directory containing multiple Sieve
+# script files. More complex setups can use other location types such as
+# `ldap' or `dict' to fetch Sieve scripts from remote databases.
+#
+# All settings that specify the location of one ore more Sieve scripts accept
+# the following syntax:
+#
+# location = [<type>:]path[;<option>[=<value>][;...]]
+#
+# If the type prefix is omitted, the script location type is 'file' and the 
+# location is interpreted as a local filesystem path pointing to a Sieve script
+# file or directory. Refer to Pigeonhole wiki or INSTALL file for more
+# information.
+
+plugin {
+{% for sieve_plugin_setting in dovecot_sieve_plugin %}
+  {{ sieve_plugin_setting }} = {{ dovecot_sieve_plugin[sieve_plugin_setting] }}
+{% endfor %}
+}

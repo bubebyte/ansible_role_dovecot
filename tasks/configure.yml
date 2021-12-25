@@ -35,6 +35,15 @@
     mode: '0644'
   notify: Restart dovecot service
 
+- name: Configure imap
+  ansible.builtin.template:
+    src: 20-imap.conf.j2
+    dest: /etc/dovecot/conf.d/20-imap.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Restart dovecot service
+
 - name: Inlcude tasks to configure lda
   include_tasks: configure_lda.yml
 
