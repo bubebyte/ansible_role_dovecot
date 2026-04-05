@@ -1,8 +1,9 @@
 ---
 galaxy_info:
+  namespace: bubebyte
   role_name: dovecot
   author: Armin Bube
-  description: "Ansible role to install and configure dovecot on CentOS."
+  description: "Ansible role to install and configure dovecot on RHEL based operating systems."
 
   license: MIT
 
