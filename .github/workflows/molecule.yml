@@ -36,7 +36,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v6
         with:
-          path: ansible_role_postfix
+          path: ansible_role_dovecot
 
       - name: Set up Python
         uses: actions/setup-python@v5
