@@ -16,7 +16,7 @@
     dovecot_extra_packages: "{{ dovecot_extra_packages + ['dovecot-pgsql'] }}"
   when:
     - dovecot_auth_method == "sql"
-    - dovecot_sql_backend|lower == "postgresql"
+    - dovecot_sql_backend|lower == "pgsql"
 
 - name: Add pigeonhole package to extra packages
   set_fact:
