@@ -1,12 +1,12 @@
 ---
 - name: Include tasks for basic configuration
-  include_tasks: configure_basic.yml
+  ansible.builtin.include_tasks: configure_basic.yml
 
 - name: Include tasks to configure authentication
-  include_tasks: configure_auth.yml
+  ansible.builtin.include_tasks: configure_auth.yml
 
 - name: Include tasks to configure ssl
-  include_tasks: configure_ssl.yml
+  ansible.builtin.include_tasks: configure_ssl.yml
 
 - name: Configure mailbox locations and namespaces
   ansible.builtin.template:

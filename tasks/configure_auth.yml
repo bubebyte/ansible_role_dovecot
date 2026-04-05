@@ -22,6 +22,7 @@
   notify: Restart dovecot service
 
 - name: "AUTH: SQL"
+  when: dovecot_auth_method == "sql"
   block:
     - name: "AUTH: SQL - Set driver"
       ansible.builtin.lineinfile:
@@ -67,4 +68,3 @@
         group: root
         mode: '0644'
       notify: Restart dovecot service
-  when: dovecot_auth_method == "sql"

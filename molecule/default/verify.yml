@@ -6,17 +6,18 @@
 
   tasks:
     - name: Gather service facts
-      service_facts:
+      ansible.builtin.service_facts:
 
-    - debug:
+    - name: Service details
+      ansible.builtin.debug:
         var: ansible_facts.services["dovecot.service"]
 
     - name: Check dovecot service state
-      fail:
+      ansible.builtin.fail:
         msg: The service dovecot is not running.
       when: ansible_facts.services["dovecot.service"].state != "running"
 
     - name: Check dovecot service state
-      fail:
+      ansible.builtin.fail:
         msg: The service dovecot is not enabled.
       when: ansible_facts.services["dovecot.service"].status != "enabled"
