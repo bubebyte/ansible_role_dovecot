@@ -39,6 +39,7 @@
         path: /etc/dovecot/dovecot-sql.conf.ext
         create: true
         regexp: "connect ="
+        # yamllint disable-line rule:line-length
         line: "connect = host={{ dovecot_sql_backend_hostname }} dbname={{ dovecot_sql_backend_databasename }} user={{ dovecot_sql_backend_user }} password={{ dovecot_sql_backend_password }}"  # noqa 204
         owner: root
         group: root
