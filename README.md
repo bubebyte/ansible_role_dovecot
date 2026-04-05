@@ -1,7 +1,7 @@
 # dovecot
 
 ## Description
-Ansible role to install an configure dovecot on CentOS.
+Ansible role to install and configure dovecot on RHEL based operating systems.
 
 ## Example Playbook
 ```YAML

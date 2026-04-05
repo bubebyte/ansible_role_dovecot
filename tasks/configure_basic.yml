@@ -1,6 +1,6 @@
 ---
 - name: "Set protocols"
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/dovecot/dovecot.conf
     create: true
     regexp: "protocols = "

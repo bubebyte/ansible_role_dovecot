@@ -1,12 +1,12 @@
 ---
-- name: Inlcude tasks to install dovecot
-  include_tasks: install.yml
+- name: Include tasks to install dovecot
+  ansible.builtin.include_tasks: install.yml
 
-- name: Inlcude tasks to configure dovecot
-  include_tasks: configure.yml
+- name: Include tasks to configure dovecot
+  ansible.builtin.include_tasks: configure.yml
 
 - name: Enable and start dovecot service
-  service:
+  ansible.builtin.service:
     name: dovecot
     state: started
     enabled: true

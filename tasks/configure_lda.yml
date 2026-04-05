@@ -1,6 +1,6 @@
 ---
 - name: "LDA: Set plugins"
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/dovecot/conf.d/15-lda.conf
     create: false
     regexp: "mail_plugins = "

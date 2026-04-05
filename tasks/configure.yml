@@ -1,11 +1,11 @@
 ---
-- name: Inlcude tasks for basic configuration
+- name: Include tasks for basic configuration
   include_tasks: configure_basic.yml
 
-- name: Inlcude tasks to configure authentication
+- name: Include tasks to configure authentication
   include_tasks: configure_auth.yml
 
-- name: Inlcude tasks to configure ssl
+- name: Include tasks to configure ssl
   include_tasks: configure_ssl.yml
 
 - name: Configure mailbox locations and namespaces
@@ -44,8 +44,8 @@
     mode: '0644'
   notify: Restart dovecot service
 
-- name: Inlcude tasks to configure lda
-  include_tasks: configure_lda.yml
+- name: Include tasks to configure lda
+  ansible.builtin.include_tasks: configure_lda.yml
 
-- name: Inlcude tasks to configure managesieve
-  include_tasks: configure_managesieve.yml
+- name: Include tasks to configure managesieve
+  ansible.builtin.include_tasks: configure_managesieve.yml

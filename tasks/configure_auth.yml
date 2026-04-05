@@ -1,6 +1,6 @@
 ---
 - name: Remove unused authetication methods from auth config
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/dovecot/conf.d/10-auth.conf
     create: true
     regexp: "^(|#)!include auth-.*(?<!{{ dovecot_auth_method }}).conf.ext"
@@ -11,7 +11,7 @@
   notify: Restart dovecot service
 
 - name: Set authetication method
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/dovecot/conf.d/10-auth.conf
     create: true
     regexp: "(|#)!include auth-{{ dovecot_auth_method }}.conf.ext"
@@ -24,7 +24,7 @@
 - name: "AUTH: SQL"
   block:
     - name: "AUTH: SQL - Set driver"
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: /etc/dovecot/dovecot-sql.conf.ext
         create: true
         regexp: "driver ="
@@ -35,7 +35,7 @@
       notify: Restart dovecot service
 
     - name: "AUTH: SQL - Set connect"
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: /etc/dovecot/dovecot-sql.conf.ext
         create: true
         regexp: "connect ="
@@ -47,7 +47,7 @@
       notify: Restart dovecot service
 
     - name: "AUTH: SQL - Set password_query"
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: /etc/dovecot/dovecot-sql.conf.ext
         create: true
         regexp: "password_query ="
@@ -58,7 +58,7 @@
       notify: Restart dovecot service
 
     - name: "AUTH: SQL - Set user_query"
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: /etc/dovecot/dovecot-sql.conf.ext
         create: true
         regexp: "user_query ="

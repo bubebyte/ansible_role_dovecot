@@ -1,6 +1,6 @@
 ---
 - name: "SSL: Set cert"
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/dovecot/conf.d/10-ssl.conf
     create: true
     regexp: "ssl_cert ="
@@ -11,7 +11,7 @@
   notify: Restart dovecot service
 
 - name: "SSL: Set key"
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/dovecot/conf.d/10-ssl.conf
     create: true
     regexp: "ssl_key ="
